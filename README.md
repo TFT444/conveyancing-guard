@@ -1,6 +1,6 @@
 # Conveyancing Guard
 
-AI-assisted payment fraud checker that flags suspicious bank-detail changes and payment instructions in UK property transactions before funds are sent.
+A payment fraud checker for UK conveyancing solicitors that flags suspicious bank-detail changes and payment instructions before funds are sent — checked against the specifics of the transaction, not just whether the message "looks like a scam."
 
 **[Try it live](#)** — link will be added once GitHub Pages is enabled for this repo.
 
@@ -27,13 +27,22 @@ A message asking for exactly the right amount, sent to an account that has never
 2. Answer two quick yes/no questions about the transaction.
 3. Get a risk verdict — **High**, **Medium**, or **Low** — with the specific reasons behind it and a recommended next action.
 
-Every check is also added to a session history panel, so a firm can show a clear record that a check was performed before funds were released.
+Detection is a rule-based keyword/pattern-matching engine (see [`assets/app.js`](assets/app.js)) — not a machine-learning model or a third-party AI API. It combines your two answers with phrases known to appear in real payment-diversion fraud attempts (bank-change language, urgency pressure, compliance-audit pretexts, requests to avoid phone verification) to produce a score, and flags the classic diversion pattern — the right amount, sent to an unused account — with its own banner.
+
+## Pages
+
+The site is four static pages sharing one stylesheet and one script, linked by a persistent nav:
+
+- **`index.html`** — the live entry point. Paste a message, answer the two questions, get a verdict.
+- **`history.html`** — every check run this session: searchable, filterable by risk, paginated.
+- **`about.html`** — the problem, how the engine works, the real tech stack, a demo flow for judges, and the full disclaimer.
+- **`settings.html`** — adjustable risk-score thresholds and a clear-session-history control.
 
 ## Tech stack
 
-- Plain HTML, CSS, and JavaScript — no frameworks, no build step.
+- Plain HTML, CSS, and JavaScript — no frameworks, no build step, no bundler.
 - Fully client-side. No backend, no API calls, no database.
-- No data is stored or transmitted anywhere — everything runs and resets in the browser session.
+- No data is transmitted anywhere. Check history and thresholds live in your browser's `sessionStorage` for the current tab only, and are cleared the moment the tab closes.
 
 ## Setup
 
@@ -41,7 +50,7 @@ This is a static site — there is nothing to install or build.
 
 **Option 1: Open directly**
 
-Open `index.html` in any browser.
+Open `index.html` in any browser. All four pages work the same way — `history.html`, `about.html`, and `settings.html` are reachable from the nav bar.
 
 **Option 2: Serve locally**
 

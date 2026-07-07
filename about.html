@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Conveyancing Guard — About</title>
+<meta name="description" content="The problem, how the checker works, the real tech stack, and the disclaimer." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body data-page="about">
+<div class="wrap">
+
+  <header class="topbar">
+    <a href="index.html" class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4.5"/></svg>
+      </div>
+      <div class="brand-text">
+        <h1>CONVEYANCING <span>GUARD</span></h1>
+        <p>Payment verification for conveyancers</p>
+      </div>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html" class="nav-link" data-nav="index"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>New Check</a>
+      <a href="history.html" class="nav-link" data-nav="history"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>History</a>
+      <a href="about.html" class="nav-link" data-nav="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="8" r="0.9" fill="currentColor" stroke="none"/></svg>About</a>
+      <a href="settings.html" class="nav-link" data-nav="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="14" cy="7" r="2.3"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="17" r="2.3"/></svg>Settings</a>
+    </nav>
+    <div class="impact-box">
+      <div class="impact-text">
+        <div class="label">Real impact, real problem</div>
+        <div class="amount">£640k</div>
+        <div class="sub">Lost in a single UK email fraud case. Don't be next.</div>
+      </div>
+      <svg class="sparkline" width="96" height="32" viewBox="0 0 100 32" aria-hidden="true">
+        <polyline points="2,26 16,22 30,24 44,16 58,18 72,8 88,5" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+        <circle cx="88" cy="5" r="3.2"/>
+      </svg>
+    </div>
+  </header>
+
+  <main>
+    <div class="panel prose" style="margin-bottom:20px;">
+      <h2>The problem</h2>
+      <p>Payment diversion fraud — also called Friday afternoon fraud or bank mandate fraud — is one of the most damaging scams in UK conveyancing. A fraudster intercepts email correspondence between a solicitor and a client or another firm, then sends a message, often timed to look routine, asking for completion funds to be sent to a &ldquo;new&rdquo; or &ldquo;updated&rdquo; bank account. UK cases have seen losses over <b>£640,000</b> from this exact pattern in a single transaction.</p>
+      <p>This is a recognised, well-documented fraud pattern. The <a href="https://www.lawsociety.org.uk/" target="_blank" rel="noopener">Law Society</a> and the <a href="https://www.nationalcrimeagency.gov.uk/" target="_blank" rel="noopener">National Crime Agency</a> have both run awareness campaigns specifically about email interception and bank mandate fraud in conveyancing, because the pattern keeps working: the email looks legitimate, the amount is often correct, and the request lands at a moment when a firm is moving quickly to complete a transaction.</p>
+
+      <h3>What makes this different</h3>
+      <p>Most scam checkers ask a single, isolated question: <i>&ldquo;does this message look like a scam?&rdquo;</i> That's a weak signal on its own — a well-written fraud email can look perfectly professional.</p>
+      <p>Conveyancing Guard asks a different question: <b>does this match what should be happening in this transaction?</b> It checks the pasted message against two facts only the solicitor knows — has this account been used before, and does the amount match what was actually expected. A message asking for exactly the right amount, sent to an account that has never been used before, is the single most common shape of a successful diversion fraud, and it's a pattern generic &ldquo;does this look phishy?&rdquo; tools miss, because the email text alone often gives nothing away.</p>
+    </div>
+
+    <div class="col-label"><div class="col-num">→</div><div><h3>How it works</h3><p>Three stages, entirely in your browser</p></div></div>
+    <div class="pipeline">
+      <div class="pipeline-step">
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></div>
+        <h5>1. Input</h5>
+        <p>You paste the message and answer two questions only you know the answer to: has this account been used before in this transaction, and does the amount match what you expected?</p>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg></div>
+        <h5>2. Rule-based scoring engine</h5>
+        <p>Plain JavaScript, running entirely in your browser, scans the text for phrases seen in real payment-diversion attempts — bank-change language, urgency pressure, compliance-audit pretexts, requests to avoid phone verification — and combines what it finds with your two answers using fixed scoring weights. Nothing is sent anywhere; there is no server to send it to.</p>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4.5"/></svg></div>
+        <h5>3. Verdict</h5>
+        <p>The score is compared against configurable thresholds (see Settings) to produce a Low, Medium or High verdict, with the specific reasons behind it, a recommended next action, and an entry in your session history.</p>
+      </div>
+    </div>
+
+    <div class="bottom-strip" style="margin:24px 0;">
+      <div class="strip-panel">
+        <h4>Key features</h4>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 5-5.5"/></svg><span><b>Fast</b> — a verdict in seconds, no waiting on a server round-trip</span></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 5-5.5"/></svg><span><b>Private</b> — nothing leaves your browser; session history clears when you close the tab</span></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 5-5.5"/></svg><span><b>Actionable</b> — a specific recommended action, not just a bare score</span></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 5-5.5"/></svg><span><b>Adjustable</b> — risk thresholds are tunable per firm, not fixed</span></div>
+        <div class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 5-5.5"/></svg><span><b>Auditable</b> — a session history to show a check was performed before funds released</span></div>
+      </div>
+      <div class="strip-panel">
+        <h4>Tech stack</h4>
+        <div class="stack-grid">
+          <div class="stack-item"><h6>Frontend</h6><p>Plain HTML5 + CSS3 (custom properties). No framework.</p></div>
+          <div class="stack-item"><h6>Logic</h6><p>Vanilla JavaScript. No build step, no bundler.</p></div>
+          <div class="stack-item"><h6>Detection</h6><p>Rule-based keyword/pattern matching in <span class="mono">assets/app.js</span> — not a machine-learning model or a third-party AI API.</p></div>
+          <div class="stack-item"><h6>Backend</h6><p>None. Fully client-side, no server, no API calls.</p></div>
+          <div class="stack-item"><h6>Data</h6><p><span class="mono">sessionStorage</span> only, cleared on tab close. Nothing in a database, nothing transmitted.</p></div>
+          <div class="stack-item"><h6>Hosting</h6><p>Static files — open directly, or deployed via GitHub Pages.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-label"><div class="col-num">✓</div><div><h3>Demo flow for judges</h3><p>Four steps, about a minute</p></div></div>
+    <div class="demoflow">
+      <div class="demoflow-step"><div class="step-n">Step 1</div><h5>Open the live tool</h5><p>You're already there — <span class="mono">index.html</span> is the working checker, not a splash page.</p></div>
+      <div class="demoflow-step"><div class="step-n">Step 2</div><h5>Try the suspicious demo</h5><p>Click the red &ldquo;Suspicious email&rdquo; button to see a High risk verdict with specific reasons and the fraud-pattern banner.</p></div>
+      <div class="demoflow-step"><div class="step-n">Step 3</div><h5>Check the history</h5><p>Open <span class="mono">History</span> in the nav — the check you just ran is logged with a timestamp and score.</p></div>
+      <div class="demoflow-step"><div class="step-n">Step 4</div><h5>Adjust the thresholds</h5><p>In <span class="mono">Settings</span>, lower the High threshold, then re-run the borderline demo and watch the verdict shift live.</p></div>
+    </div>
+
+    <div class="disclaimer-box" id="disclaimer">
+      <h3>Disclaimer</h3>
+      <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.7;">Conveyancing Guard is a <b>prototype built for a hackathon</b>, demonstrating an approach to catching payment diversion fraud. It is <b>not</b> a certified compliance product, has not been audited or accredited, and should not be relied on as a sole safeguard.</p>
+      <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.7;margin-top:10px;">Always independently verify large or unusual payment instructions — especially any request to change bank details — <b>by phone, using a number you already have on file</b>, never a number or contact provided in the message itself.</p>
+      <p style="font-size:11.5px;color:var(--text-muted);margin-top:14px;"><span id="sessionCheckCount">0</span> checks performed in this browser tab so far — none of it has left your device.</p>
+    </div>
+  </main>
+
+  <footer class="footer">Conveyancing Guard is a hackathon prototype. See the disclaimer above before relying on any result.</footer>
+</div>
+
+<nav class="bottom-nav" aria-label="Primary mobile">
+  <a href="index.html" class="nav-link" data-nav="index"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>New Check</a>
+  <a href="history.html" class="nav-link" data-nav="history"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>History</a>
+  <a href="about.html" class="nav-link" data-nav="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="8" r="0.9" fill="currentColor" stroke="none"/></svg>About</a>
+  <a href="settings.html" class="nav-link" data-nav="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="14" cy="7" r="2.3"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="17" r="2.3"/></svg>Settings</a>
+</nav>
+
+<script src="assets/app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    CG.initNav();
+    CG.initAboutPage();
+  });
+</script>
+</body>
+</html>

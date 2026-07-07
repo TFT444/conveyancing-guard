@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Conveyancing Guard — History</title>
+<meta name="description" content="Every payment check performed this session, with a searchable, filterable record." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body data-page="history">
+<div class="wrap">
+
+  <header class="topbar">
+    <a href="index.html" class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4.5"/></svg>
+      </div>
+      <div class="brand-text">
+        <h1>CONVEYANCING <span>GUARD</span></h1>
+        <p>Payment verification for conveyancers</p>
+      </div>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html" class="nav-link" data-nav="index"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>New Check</a>
+      <a href="history.html" class="nav-link" data-nav="history"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>History</a>
+      <a href="about.html" class="nav-link" data-nav="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="8" r="0.9" fill="currentColor" stroke="none"/></svg>About</a>
+      <a href="settings.html" class="nav-link" data-nav="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="14" cy="7" r="2.3"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="17" r="2.3"/></svg>Settings</a>
+    </nav>
+    <div class="impact-box">
+      <div class="impact-text">
+        <div class="label">Real impact, real problem</div>
+        <div class="amount">£640k</div>
+        <div class="sub">Lost in a single UK email fraud case. Don't be next.</div>
+      </div>
+      <svg class="sparkline" width="96" height="32" viewBox="0 0 100 32" aria-hidden="true">
+        <polyline points="2,26 16,22 30,24 44,16 58,18 72,8 88,5" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+        <circle cx="88" cy="5" r="3.2"/>
+      </svg>
+    </div>
+  </header>
+
+  <main>
+    <div class="col-label"><div class="col-num">3</div><div><h3>Check history</h3><p>Every check performed this session — cleared the moment you close the tab</p></div></div>
+
+    <div class="panel">
+      <div class="panel-title"><h2>History</h2><span class="meta" id="totalMeta">0 checks total</span></div>
+
+      <div class="history-toolbar">
+        <input type="search" id="historySearch" class="history-search" placeholder="Search messages…" aria-label="Search history" />
+        <div class="tabs" role="tablist" aria-label="Filter by risk">
+          <button type="button" class="tab" role="tab" data-risk="all" aria-selected="true">All <span class="count">(0)</span></button>
+          <button type="button" class="tab" role="tab" data-risk="red" aria-selected="false">High <span class="count">(0)</span></button>
+          <button type="button" class="tab" role="tab" data-risk="amber" aria-selected="false">Medium <span class="count">(0)</span></button>
+          <button type="button" class="tab" role="tab" data-risk="green" aria-selected="false">Low <span class="count">(0)</span></button>
+        </div>
+      </div>
+
+      <div id="emptyNoHistory" class="logempty" style="display:none;">No checks performed yet.<br /><a href="index.html">Run a check from New Check →</a></div>
+      <div id="emptyNoResults" class="logempty" style="display:none;">No checks match your search or filter.<br /><button type="button" class="btn btn-secondary btn-sm" id="clearFilters" style="margin-top:10px;">Clear filters</button></div>
+
+      <div id="historyTableScroll" class="table-scroll" style="display:none;">
+        <table class="history-table">
+          <thead>
+            <tr><th>Time</th><th>Risk</th><th>Score</th><th>Message</th><th></th></tr>
+          </thead>
+          <tbody id="historyBody"></tbody>
+        </table>
+      </div>
+
+      <div id="pagination" class="pagination" style="display:none;">
+        <button type="button" class="btn btn-secondary btn-sm" id="prevPage">← Prev</button>
+        <span id="pageLabel" class="mono">Page 1 of 1</span>
+        <button type="button" class="btn btn-secondary btn-sm" id="nextPage">Next →</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">Prototype for demonstration — not a certified compliance product. Always verify large or unusual payment instructions by phone before transferring funds. <a href="about.html">Read the full disclaimer →</a></footer>
+</div>
+
+<nav class="bottom-nav" aria-label="Primary mobile">
+  <a href="index.html" class="nav-link" data-nav="index"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>New Check</a>
+  <a href="history.html" class="nav-link" data-nav="history"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>History</a>
+  <a href="about.html" class="nav-link" data-nav="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="8" r="0.9" fill="currentColor" stroke="none"/></svg>About</a>
+  <a href="settings.html" class="nav-link" data-nav="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="14" cy="7" r="2.3"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="17" r="2.3"/></svg>Settings</a>
+</nav>
+
+<script src="assets/app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    CG.initNav();
+    CG.initHistoryPage();
+  });
+</script>
+</body>
+</html>
