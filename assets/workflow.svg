@@ -1,0 +1,140 @@
+<svg width="100%" viewBox="0 0 680 456" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Conveyancing Guard workflow</title>
+<desc>Cyber-styled workflow with animated data flow: paste a payment message, rule-based pattern analysis, risk verdict of high, medium or low, then a recommended action.</desc>
+<defs>
+  <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+    <path d="M32 0 L0 0 0 32" fill="none" stroke="#0f2027" stroke-width="0.5"/>
+  </pattern>
+  <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+    <feGaussianBlur stdDeviation="2.2" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="dotglow" x="-200%" y="-200%" width="500%" height="500%">
+    <feGaussianBlur stdDeviation="3" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <path id="p1" d="M340,96 L340,134" fill="none"/>
+  <path id="p2a" d="M340,194 L140,238" fill="none"/>
+  <path id="p2b" d="M340,194 L340,238" fill="none"/>
+  <path id="p2c" d="M340,194 L540,238" fill="none"/>
+  <path id="p3a" d="M140,296 L340,338" fill="none"/>
+  <path id="p3b" d="M340,296 L340,338" fill="none"/>
+  <path id="p3c" d="M540,296 L340,338" fill="none"/>
+</defs>
+<style>
+  text { font-family: 'SF Mono', 'Fira Code', Consolas, monospace; letter-spacing: 0.5px; }
+  .th { font-size: 13px; font-weight: 700; }
+  .ts { font-size: 10.5px; font-weight: 400; }
+  .flow { stroke-dasharray: 5 5; animation: flow 1.2s linear infinite; }
+  @keyframes flow { to { stroke-dashoffset: -20; } }
+  .pulse { animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  @media (prefers-reduced-motion: reduce) {
+    .flow, .pulse, animateMotion { animation: none !important; }
+  }
+</style>
+
+<rect x="0" y="0" width="680" height="456" rx="16" fill="#03070a"/>
+<rect x="0" y="0" width="680" height="456" rx="16" fill="url(#grid)"/>
+
+<text x="20" y="22" font-size="11" fill="#2dd4bf" opacity="0.7">SYS://fraud-detection-pipeline</text>
+<circle class="pulse" cx="648" cy="18" r="4" fill="#4ade80"/>
+<text x="638" y="22" text-anchor="end" font-size="11" fill="#4ade80">LIVE</text>
+
+<use href="#p1" stroke="#22d3ee" stroke-width="1.5" class="flow" marker-end="url(#arrow)" filter="url(#glow)"/>
+<use href="#p2a" stroke="#22d3ee" stroke-width="1.5" class="flow" marker-end="url(#arrow)" filter="url(#glow)"/>
+<use href="#p2b" stroke="#22d3ee" stroke-width="1.5" class="flow" marker-end="url(#arrow)" filter="url(#glow)"/>
+<use href="#p2c" stroke="#22d3ee" stroke-width="1.5" class="flow" marker-end="url(#arrow)" filter="url(#glow)"/>
+<use href="#p3a" stroke="#22d3ee" stroke-width="1.5" class="flow" marker-end="url(#arrow)" filter="url(#glow)"/>
+<use href="#p3b" stroke="#22d3ee" stroke-width="1.5" class="flow" marker-end="url(#arrow)" filter="url(#glow)"/>
+<use href="#p3c" stroke="#22d3ee" stroke-width="1.5" class="flow" marker-end="url(#arrow)" filter="url(#glow)"/>
+
+<circle r="4" fill="#67e8f9" filter="url(#dotglow)">
+  <animateMotion dur="0.7s" begin="0s" repeatCount="indefinite"><mpath href="#p1"/></animateMotion>
+</circle>
+<circle r="4" fill="#67e8f9" filter="url(#dotglow)">
+  <animateMotion dur="0.9s" begin="0.9s" repeatCount="indefinite"><mpath href="#p2a"/></animateMotion>
+</circle>
+<circle r="4" fill="#67e8f9" filter="url(#dotglow)">
+  <animateMotion dur="0.9s" begin="0.9s" repeatCount="indefinite"><mpath href="#p2b"/></animateMotion>
+</circle>
+<circle r="4" fill="#67e8f9" filter="url(#dotglow)">
+  <animateMotion dur="0.9s" begin="0.9s" repeatCount="indefinite"><mpath href="#p2c"/></animateMotion>
+</circle>
+<circle r="4" fill="#67e8f9" filter="url(#dotglow)">
+  <animateMotion dur="0.9s" begin="1.9s" repeatCount="indefinite"><mpath href="#p3a"/></animateMotion>
+</circle>
+<circle r="4" fill="#67e8f9" filter="url(#dotglow)">
+  <animateMotion dur="0.9s" begin="1.9s" repeatCount="indefinite"><mpath href="#p3b"/></animateMotion>
+</circle>
+<circle r="4" fill="#67e8f9" filter="url(#dotglow)">
+  <animateMotion dur="0.9s" begin="1.9s" repeatCount="indefinite"><mpath href="#p3c"/></animateMotion>
+</circle>
+
+<g id="node1">
+  <rect x="220" y="40" width="240" height="56" rx="2" fill="#22d3ee" opacity="0.06"/>
+  <g filter="url(#glow)" stroke="#22d3ee" stroke-width="2" fill="none">
+    <path d="M220 54 L220 40 L234 40"/><path d="M446 40 L460 40 L460 54"/>
+    <path d="M460 82 L460 96 L446 96"/><path d="M234 96 L220 96 L220 82"/>
+  </g>
+  <text class="th" x="340" y="64" text-anchor="middle" fill="#67e8f9">PASTE MESSAGE</text>
+  <text class="ts" x="340" y="80" text-anchor="middle" fill="#5eead4">email or instruction</text>
+</g>
+
+<g id="node2">
+  <rect x="210" y="138" width="260" height="56" rx="2" fill="#22d3ee" opacity="0.06"/>
+  <g filter="url(#glow)" stroke="#22d3ee" stroke-width="2" fill="none">
+    <path d="M210 152 L210 138 L224 138"/><path d="M446 138 L460 138 L460 152"/>
+    <path d="M460 180 L460 194 L446 194"/><path d="M224 194 L210 194 L210 180"/>
+  </g>
+  <text class="th" x="340" y="162" text-anchor="middle" fill="#67e8f9">PATTERN ANALYSIS</text>
+  <text class="ts" x="340" y="178" text-anchor="middle" fill="#5eead4">account &#183; urgency &#183; amount</text>
+</g>
+
+<g id="node3">
+  <rect x="50" y="240" width="180" height="56" rx="2" fill="#ff3b5c" opacity="0.08"/>
+  <g filter="url(#glow)" stroke="#ff3b5c" stroke-width="2" fill="none">
+    <path d="M50 254 L50 240 L64 240"/><path d="M216 240 L230 240 L230 254"/>
+    <path d="M230 282 L230 296 L216 296"/><path d="M64 296 L50 296 L50 282"/>
+  </g>
+  <text class="th" x="140" y="264" text-anchor="middle" fill="#ff8fa3">HIGH RISK</text>
+  <text class="ts" x="140" y="280" text-anchor="middle" fill="#ffb3c1">stop and verify</text>
+</g>
+
+<g id="node4">
+  <rect x="250" y="240" width="180" height="56" rx="2" fill="#fbbf24" opacity="0.08"/>
+  <g filter="url(#glow)" stroke="#fbbf24" stroke-width="2" fill="none">
+    <path d="M250 254 L250 240 L264 240"/><path d="M416 240 L430 240 L430 254"/>
+    <path d="M430 282 L430 296 L416 296"/><path d="M264 296 L250 296 L250 282"/>
+  </g>
+  <text class="th" x="340" y="264" text-anchor="middle" fill="#fde68a">MEDIUM RISK</text>
+  <text class="ts" x="340" y="280" text-anchor="middle" fill="#fde68a">verify by phone</text>
+</g>
+
+<g id="node5">
+  <rect x="450" y="240" width="180" height="56" rx="2" fill="#39ff88" opacity="0.08"/>
+  <g filter="url(#glow)" stroke="#39ff88" stroke-width="2" fill="none">
+    <path d="M450 254 L450 240 L464 240"/><path d="M616 240 L630 240 L630 254"/>
+    <path d="M630 282 L630 296 L616 296"/><path d="M464 296 L450 296 L450 282"/>
+  </g>
+  <text class="th" x="540" y="264" text-anchor="middle" fill="#86efac">LOW RISK</text>
+  <text class="ts" x="540" y="280" text-anchor="middle" fill="#86efac">proceed as normal</text>
+</g>
+
+<g id="node6">
+  <rect x="180" y="340" width="320" height="56" rx="2" fill="#a78bfa" opacity="0.06"/>
+  <g filter="url(#glow)" stroke="#a78bfa" stroke-width="2" fill="none">
+    <path d="M180 354 L180 340 L194 340"/><path d="M486 340 L500 340 L500 354"/>
+    <path d="M500 382 L500 396 L486 396"/><path d="M194 396 L180 396 L180 382"/>
+  </g>
+  <text class="th" x="340" y="364" text-anchor="middle" fill="#c4b5fd">RECOMMENDED ACTION</text>
+  <text class="ts" x="340" y="380" text-anchor="middle" fill="#ddd6fe">verified reasoning, not a guess</text>
+</g>
+
+<text x="20" y="440" font-size="10" fill="#1e3a3a">0x4655524... payment_diversion_pattern.match()</text>
+<text x="660" y="440" text-anchor="end" font-size="11" fill="#2dd4bf" opacity="0.8">CONVEYANCING_GUARD</text>
+
+</svg>
