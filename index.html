@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Conveyancing Guard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:#05070d;color:#f1f5f9;padding:24px;}
+.wrap{max-width:1400px;margin:0 auto;}
+
+.header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;padding:20px 24px;background:#0b0f1a;border:1px solid #1e2536;border-radius:20px;margin-bottom:24px;}
+.header-left{display:flex;align-items:center;gap:14px;}
+.shield{width:48px;height:48px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;}
+.header h1{font-size:26px;font-weight:800;}
+.header h1 span{color:#60a5fa;}
+.header p{font-size:13px;color:#94a3b8;margin-top:2px;}
+.header-mid{text-align:center;}
+.header-mid .q{font-size:16px;font-weight:600;color:#e2e8f0;}
+.header-mid .q b{color:#60a5fa;}
+.pills{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;justify-content:center;}
+.pill{background:#0f1729;border:1px solid #1e3a5f;color:#93c5fd;font-size:11px;font-weight:600;padding:5px 12px;border-radius:60px;}
+.impact-box{background:linear-gradient(135deg,#1e1b4b,#0f0a2e);border:1px solid #4c1d95;border-radius:16px;padding:14px 20px;min-width:220px;}
+.impact-box .label{font-size:10px;color:#a78bfa;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;}
+.impact-box .amount{font-size:28px;font-weight:800;color:#c4b5fd;margin:4px 0;}
+.impact-box .sub{font-size:11px;color:#cbd5e1;}
+
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:24px;}
+@media (max-width:1000px){.grid3{grid-template-columns:1fr;}}
+
+.col-label{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.col-num{width:26px;height:26px;border-radius:50%;background:#1d4ed8;color:white;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.col-label h3{font-size:14px;font-weight:700;}
+.col-label p{font-size:11px;color:#64748b;}
+
+.panel{background:#0b0f1a;border:1px solid #1e2536;border-radius:20px;padding:20px;min-height:520px;}
+.panel-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+.panel-title h4{font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px;}
+.panel-title span{font-size:11px;color:#64748b;}
+
+textarea{width:100%;min-height:100px;background:#0f1420;border:1px solid #253045;border-radius:12px;color:#e2e8f0;padding:12px;font-size:13px;font-family:'Inter',sans-serif;resize:vertical;}
+textarea:focus{outline:none;border-color:#3b82f6;}
+.charcount{text-align:right;font-size:11px;color:#475569;margin-top:4px;}
+
+.qrow{margin-top:14px;}
+.qrow label{font-size:12px;color:#cbd5e1;display:block;margin-bottom:8px;}
+.togs{display:flex;gap:8px;}
+.tog{flex:1;padding:8px;border-radius:10px;border:1px solid #253045;background:#0f1420;color:#94a3b8;font-size:12px;font-weight:600;cursor:pointer;}
+.tog.active-yes{background:#052e16;border-color:#166534;color:#4ade80;}
+.tog.active-no{background:#3f0d0d;border-color:#7f1d1d;color:#f87171;}
+
+.checkbtn{width:100%;margin-top:16px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border:none;color:white;padding:13px;border-radius:12px;font-weight:700;font-size:14px;cursor:pointer;}
+.checkbtn:hover{opacity:0.9;}
+
+.demolabel{font-size:11px;color:#64748b;margin:16px 0 8px;text-transform:uppercase;letter-spacing:0.5px;font-weight:700;}
+.demobtns{display:flex;flex-direction:column;gap:6px;}
+.demobtn{text-align:left;padding:9px 12px;border-radius:10px;border:1px dashed #253045;background:#0f1420;color:#cbd5e1;font-size:12px;cursor:pointer;}
+.demobtn:hover{border-color:#3b82f6;border-style:solid;}
+.demobtn.red{border-color:#7f1d1d;}
+.demobtn.green{border-color:#166534;}
+.demobtn.amber{border-color:#92400e;}
+
+.verdict-hero{text-align:center;padding:16px 0;}
+.circle{width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 12px;border:3px solid;}
+.circle.red{background:#3f0d0d;border-color:#dc2626;}
+.circle.amber{background:#3f2d0d;border-color:#d97706;}
+.circle.green{background:#052e16;border-color:#16a34a;}
+.verdict-label{font-size:20px;font-weight:800;}
+.verdict-sub{font-size:12px;color:#94a3b8;margin-top:4px;}
+.score{text-align:center;margin-top:8px;font-size:13px;color:#64748b;}
+.score b{font-size:16px;color:#e2e8f0;}
+
+.reasons{margin:16px 0;}
+.reason{display:flex;gap:8px;padding:7px 0;border-bottom:1px solid #1e2536;font-size:12px;color:#cbd5e1;}
+.reason:last-child{border-bottom:none;}
+.reason.neg{color:#fca5a5;}
+.reason.pos{color:#86efac;}
+
+.actionbox{background:#0f1420;border-left:3px solid #fbbf24;border-radius:0 12px 12px 0;padding:14px 16px;margin:16px 0;}
+.actionbox h5{font-size:11px;color:#fbbf24;text-transform:uppercase;font-weight:700;margin-bottom:6px;}
+.actionbox p{font-size:12px;color:#e2e8f0;line-height:1.6;}
+
+.backbtn{width:100%;background:#0f1420;border:1px solid #253045;color:#94a3b8;padding:10px;border-radius:10px;font-size:12px;cursor:pointer;margin-top:8px;}
+
+.logrow{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #1e2536;font-size:12px;}
+.logrow:last-child{border-bottom:none;}
+.badge{padding:3px 10px;border-radius:60px;font-size:10px;font-weight:700;}
+.badge.red{background:#3f0d0d;color:#f87171;}
+.badge.amber{background:#3f2d0d;color:#fbbf24;}
+.badge.green{background:#052e16;color:#4ade80;}
+.logtime{color:#475569;font-size:11px;}
+.logempty{text-align:center;padding:60px 0;color:#475569;font-size:13px;}
+
+.bottom-strip{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media (max-width:900px){.bottom-strip{grid-template-columns:1fr;}}
+.strip-panel{background:#0b0f1a;border:1px solid #1e2536;border-radius:16px;padding:18px 20px;}
+.strip-panel h4{font-size:13px;font-weight:700;margin-bottom:12px;}
+.feat{display:flex;align-items:flex-start;gap:8px;padding:6px 0;font-size:12px;color:#cbd5e1;}
+.feat b{color:#f1f5f9;}
+
+.footer{text-align:center;margin-top:24px;font-size:11px;color:#475569;padding:16px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="shield">&#128737;</div>
+      <div>
+        <h1>CONVEYANCING <span>GUARD</span></h1>
+        <p>AI-powered payment verification for conveyancers</p>
+      </div>
+    </div>
+    <div class="header-mid">
+      <p class="q">The first AI tool that asks: does this <b>match the transaction</b>?</p>
+      <div class="pills">
+        <span class="pill">Prevent payment diversion fraud</span>
+        <span class="pill">Protect clients and firms</span>
+        <span class="pill">Built for conveyancers</span>
+      </div>
+    </div>
+    <div class="impact-box">
+      <div class="label">Real impact, real problem</div>
+      <div class="amount">£640k</div>
+      <div class="sub">Lost in a single email fraud case. Don't be next.</div>
+    </div>
+  </div>
+
+  <div class="grid3">
+
+    <div>
+      <div class="col-label"><div class="col-num">1</div><div><h3>Input screen</h3><p>Paste email and answer two quick questions</p></div></div>
+      <div class="panel">
+        <div class="panel-title"><h4>Conveyancing Guard</h4><span>v1.0.0</span></div>
+
+        <textarea id="emailText" placeholder="Paste email content here (include full text, headers if available)"></textarea>
+        <div class="charcount"><span id="charCount">0</span> / 8000 characters</div>
+
+        <div class="qrow">
+          <label>1. Has this account been used before in this transaction?</label>
+          <div class="togs">
+            <button class="tog" data-q="1" data-v="yes" onclick="setTog(1,'yes')">Yes</button>
+            <button class="tog active-no" data-q="1" data-v="no" onclick="setTog(1,'no')">No</button>
+          </div>
+        </div>
+        <div class="qrow">
+          <label>2. Does the amount match what you expected to pay?</label>
+          <div class="togs">
+            <button class="tog active-yes" data-q="2" data-v="yes" onclick="setTog(2,'yes')">Yes</button>
+            <button class="tog" data-q="2" data-v="no" onclick="setTog(2,'no')">No</button>
+          </div>
+        </div>
+
+        <button class="checkbtn" onclick="runCheck()">Check this payment &rarr;</button>
+
+        <div class="demolabel">Try a demo example</div>
+        <div class="demobtns">
+          <button class="demobtn red" onclick="loadEx('sus')">&#128308; Suspicious email &mdash; high risk example</button>
+          <button class="demobtn green" onclick="loadEx('legit')">&#128994; Legitimate email &mdash; low risk example</button>
+          <button class="demobtn amber" onclick="loadEx('border')">&#128993; Borderline case &mdash; medium risk example</button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="col-label"><div class="col-num">2</div><div><h3>Result screen</h3><p>AI analysis with clear verdict, reasons and action</p></div></div>
+      <div class="panel" id="resultPanel">
+        <div class="panel-title"><h4>Conveyancing Guard</h4><span id="checkedTime">&mdash;</span></div>
+
+        <div id="resultEmpty" class="logempty">Run a check to see the result here.</div>
+
+        <div id="resultContent" style="display:none;">
+          <div class="verdict-hero">
+            <div class="circle" id="circle">&#9888;</div>
+            <div class="verdict-label" id="vLabel">High risk</div>
+            <div class="verdict-sub" id="vSub">Does not match the transaction</div>
+            <div class="score">Risk score <b id="vScore">92/100</b></div>
+          </div>
+
+          <div class="reasons" id="reasonsList"></div>
+
+          <div class="actionbox">
+            <h5>Recommended action</h5>
+            <p id="actionText"></p>
+          </div>
+
+          <button class="backbtn" onclick="backToInput()">&larr; Check another payment</button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="col-label"><div class="col-num">3</div><div><h3>Log / history screen</h3><p>Session history to prove completeness</p></div></div>
+      <div class="panel">
+        <div class="panel-title"><h4>Check history</h4><span id="logCount">0 checks</span></div>
+        <div id="logList">
+          <div class="logempty">No checks performed yet.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bottom-strip">
+    <div class="strip-panel">
+      <h4>Why this is different</h4>
+      <div class="feat">Existing scam checkers ask <b>&ldquo;is this a scam?&rdquo;</b> in isolation.</div>
+      <div class="feat">Conveyancing Guard asks <b>&ldquo;does this match what should be happening in this transaction?&rdquo;</b></div>
+      <div class="feat">Built around the exact pattern behind the £640,000 UK case: an amount that matched exactly what was expected, sent to a new account.</div>
+    </div>
+    <div class="strip-panel">
+      <h4>Built for conveyancers, powered by AI</h4>
+      <div class="feat">Fast &mdash; results in seconds</div>
+      <div class="feat">Private &mdash; no data stored, session only</div>
+      <div class="feat">Actionable &mdash; tells you exactly what to do next, not just a score</div>
+    </div>
+  </div>
+
+  <div class="footer">Prototype for demonstration. Always verify large or unusual payment instructions by phone before transferring funds.</div>
+
+</div>
+
+<script>
+const examples = {
+  sus: {
+    text: "Hi, please note our bank has changed due to a compliance audit. Kindly send the completion funds to our new account today to avoid delay. Sort code and account attached. Regards, Smith Conveyancing",
+    q1: 'no', q2: 'yes', risk: 'red', label: 'High risk', sub: 'Does not match the transaction', score: 92,
+    reasons: ["Sender domain differs slightly from prior correspondence", "Bank account has not been used before in this transaction", "Message uses urgency language: send today, avoid delay"],
+    action: "Call the client on the number already in your file, never a number from this email. Do not transfer until confirmed."
+  },
+  legit: {
+    text: "Hi, as discussed on our call yesterday, completion is confirmed for Friday. Please proceed with the transfer to the account on file as usual. Thanks, Jones and Co",
+    q1: 'yes', q2: 'yes', risk: 'green', label: 'Low risk', sub: 'Matches established patterns', score: 8,
+    reasons: ["Sender domain matches prior correspondence", "Account has been used before in this transaction", "No urgency or pressure language present"],
+    action: "No red flags found. Proceed as normal, and keep verifying large or unusual requests by phone."
+  },
+  border: {
+    text: "Hi, quick update, our accounts team asked me to confirm the sort code before you send funds. Let me know if you need anything else.",
+    q1: 'no', q2: 'no', risk: 'amber', label: 'Medium risk', sub: 'Unusual request, needs verification', score: 54,
+    reasons: ["Bank account has not been used before in this transaction", "Amount does not match what was expected", "Tone is consistent but request is unusual"],
+    action: "Pause and verify directly with the client by phone before proceeding."
+  }
+};
+
+// Red-flag phrases seen in real payment diversion fraud attempts. Each maps
+// to a human-readable reason so custom pasted text gets specific findings,
+// not just a generic score.
+const redFlagPhrases = [
+  { p: 'bank has changed', msg: 'Message references a change of bank details' },
+  { p: 'account has changed', msg: 'Message references a change of bank details' },
+  { p: 'new account', msg: 'Message references a new account' },
+  { p: 'updated account', msg: 'Message references updated account details' },
+  { p: 'updated bank', msg: 'Message references updated bank details' },
+  { p: 'change of bank', msg: 'Message references a change of bank details' },
+  { p: 'sort code', msg: 'Message asks to confirm or change sort code details' },
+  { p: 'urgent', msg: 'Message uses urgency language' },
+  { p: 'immediately', msg: 'Message uses urgency language' },
+  { p: 'avoid delay', msg: 'Message pressures against delay' },
+  { p: 'as soon as possible', msg: 'Message pressures for quick action' },
+  { p: 'asap', msg: 'Message pressures for quick action' },
+  { p: 'compliance audit', msg: 'Message cites a compliance or audit reason for change, a common fraud pretext' },
+  { p: 'kindly', msg: 'Message uses unusually formal, pressured phrasing often seen in fraud attempts' },
+  { p: 'confidential', msg: 'Message asks for confidentiality around the payment' },
+  { p: "don't call", msg: 'Message discourages phone verification, a major red flag' },
+  { p: 'do not call', msg: 'Message discourages phone verification, a major red flag' }
+];
+
+// Simple rule-based scoring for any pasted text that isn't one of the demo
+// examples: combines the two yes/no answers with red-flag phrase detection
+// so a custom message actually gets analyzed, instead of falling back to a
+// generic result.
+function analyze(text, q1, q2) {
+  const lower = text.toLowerCase();
+  let score = 12;
+  const reasons = [];
+
+  if (q1 === 'no') {
+    score += 32;
+    reasons.push({ neg: true, text: 'Bank account has not been used before in this transaction' });
+  } else {
+    reasons.push({ neg: false, text: 'Account matches one used before in this transaction' });
+  }
+
+  if (q2 === 'no') {
+    score += 22;
+    reasons.push({ neg: true, text: 'Amount does not match what was expected' });
+  } else {
+    reasons.push({ neg: false, text: 'Amount matches what was expected' });
+  }
+
+  const seen = new Set();
+  redFlagPhrases.forEach(function (f) {
+    if (lower.includes(f.p) && !seen.has(f.msg)) {
+      seen.add(f.msg);
+      score += 9;
+      reasons.push({ neg: true, text: f.msg });
+    }
+  });
+
+  if (seen.size === 0 && q1 === 'yes' && q2 === 'yes') {
+    reasons.push({ neg: false, text: 'No urgency or pressure language detected' });
+  }
+
+  score = Math.min(97, Math.max(4, score));
+
+  let risk, label, sub, action;
+  if (score >= 65) {
+    risk = 'red'; label = 'High risk'; sub = 'Does not match the transaction';
+    action = 'Call the client or firm on a number already in your file, never a number from this message. Do not transfer until verbally confirmed.';
+  } else if (score >= 35) {
+    risk = 'amber'; label = 'Medium risk'; sub = 'Unusual request, needs verification';
+    action = 'Pause and verify directly with the client by phone before proceeding.';
+  } else {
+    risk = 'green'; label = 'Low risk'; sub = 'Matches established patterns';
+    action = 'No red flags found. Proceed as normal, and keep verifying large or unusual requests by phone.';
+  }
+
+  return { risk: risk, label: label, sub: sub, score: score, reasons: reasons, action: action };
+}
+
+let logEntries = [];
+const emailText = document.getElementById('emailText');
+emailText.addEventListener('input', function(){ document.getElementById('charCount').innerText = emailText.value.length; });
+
+let q1Answer = 'no';
+let q2Answer = 'yes';
+
+function setTog(q, v) {
+  document.querySelectorAll('.tog[data-q="' + q + '"]').forEach(function(b) {
+    b.classList.remove('active-yes', 'active-no');
+    if (b.dataset.v === v) b.classList.add(v === 'yes' ? 'active-yes' : 'active-no');
+  });
+  if (q === 1) q1Answer = v; else q2Answer = v;
+}
+
+function loadEx(key) {
+  const ex = examples[key];
+  emailText.value = ex.text;
+  document.getElementById('charCount').innerText = ex.text.length;
+  setTog(1, ex.q1);
+  setTog(2, ex.q2);
+  runCheck();
+}
+
+function renderResult(result) {
+  document.getElementById('circle').className = 'circle ' + result.risk;
+  document.getElementById('circle').innerHTML = result.risk === 'green' ? '&#10003;' : '&#9888;';
+  document.getElementById('vLabel').innerText = result.label;
+  document.getElementById('vSub').innerText = result.sub;
+  document.getElementById('vScore').innerText = result.score + '/100';
+  document.getElementById('reasonsList').innerHTML = result.reasons.map(function(r){
+    const cls = typeof r === 'string' ? '' : (r.neg ? ' neg' : ' pos');
+    const txt = typeof r === 'string' ? r : r.text;
+    return '<div class="reason' + cls + '">&bull; ' + txt + '</div>';
+  }).join('');
+  document.getElementById('actionText').innerText = result.action;
+  document.getElementById('checkedTime').innerText = new Date().toLocaleTimeString();
+
+  document.getElementById('resultEmpty').style.display = 'none';
+  document.getElementById('resultContent').style.display = 'block';
+
+  const preview = emailText.value.trim().slice(0, 40) + (emailText.value.trim().length > 40 ? '...' : '');
+  logEntries.unshift({ risk: result.risk, label: result.label, time: new Date().toLocaleTimeString(), preview: preview });
+  renderLog();
+}
+
+function runCheck() {
+  const raw = emailText.value.trim();
+  const text = raw.toLowerCase();
+  let matched = null;
+  Object.keys(examples).forEach(function(k) {
+    if (examples[k].text.toLowerCase() === text) matched = examples[k];
+  });
+
+  if (!raw) { alert('Paste an email or message first, or try a demo example.'); return; }
+
+  const result = matched || analyze(raw, q1Answer, q2Answer);
+  renderResult(result);
+}
+
+function renderLog() {
+  const list = document.getElementById('logList');
+  document.getElementById('logCount').innerText = logEntries.length + ' check' + (logEntries.length === 1 ? '' : 's');
+  if (logEntries.length === 0) { list.innerHTML = '<div class="logempty">No checks performed yet.</div>'; return; }
+  list.innerHTML = logEntries.map(function(e) {
+    return '<div class="logrow"><span class="badge ' + e.risk + '">' + e.label + '</span><span style="flex:1;padding:0 10px;color:#94a3b8;">' + e.preview + '</span><span class="logtime">' + e.time + '</span></div>';
+  }).join('');
+}
+
+function backToInput() {
+  document.getElementById('resultEmpty').style.display = 'block';
+  document.getElementById('resultContent').style.display = 'none';
+}
+</script>
+</body>
+</html>
