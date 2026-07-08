@@ -83,6 +83,104 @@
   CG.HISTORY_PAGE_SIZE = 10;
 
   /* ------------------------------------------------------------------ *
+   * Sample history — static, illustrative entries shown on History so
+   * the page never looks empty on a first visit. These are hand-set
+   * (like the demo buttons), not run through analyze(), and are kept
+   * out of sessionStorage entirely: they're not part of a real session
+   * and never mix with, filter alongside, or get cleared by anything
+   * that touches actual session history.
+   * ------------------------------------------------------------------ */
+
+  var HIGH_ACTION = 'Call the client or firm on a number already in your file, never a number from this message. Do not transfer until verbally confirmed.';
+  var MEDIUM_ACTION = 'Pause and verify directly with the client by phone before proceeding.';
+  var LOW_ACTION = 'No red flags found. Proceed as normal, and keep verifying large or unusual requests by phone.';
+
+  CG.SAMPLE_HISTORY_SEED = [
+    {
+      minutesAgo: 18, risk: 'red', label: 'High risk', score: 88, confidence: 'high', patternMatch: true,
+      preview: "Apologies for the short notice — our client account details have changed following a recent audit. Please send today's completion funds to the new sort code below.",
+      fullText: "Hi, apologies for the short notice — our client account details have changed following a recent audit. Please send today's completion funds to the new sort code below to avoid any delay to exchange.",
+      q1: 'no', q2: 'yes', action: HIGH_ACTION,
+      reasons: [
+        { neg: true, text: 'Bank account has not been used before in this transaction' },
+        { neg: false, text: 'Amount matches what was expected' },
+        { neg: true, text: 'Message references a change of bank details' },
+        { neg: true, text: 'Message cites a compliance or audit reason for change, a common fraud pretext' }
+      ]
+    },
+    {
+      minutesAgo: 46, risk: 'amber', label: 'Medium risk', score: 51, confidence: 'medium', patternMatch: false,
+      preview: 'Quick one before you send the funds — can you confirm the sort code on file? Want to be sure before the transfer goes out.',
+      fullText: 'Quick one before you send the funds — can you confirm the sort code on file? Want to be sure before the transfer goes out.',
+      q1: 'no', q2: 'no', action: MEDIUM_ACTION,
+      reasons: [
+        { neg: true, text: 'Bank account has not been used before in this transaction' },
+        { neg: true, text: 'Amount does not match what was expected' },
+        { neg: false, text: 'Tone is consistent but request is unusual' }
+      ]
+    },
+    {
+      minutesAgo: 80, risk: 'green', label: 'Low risk', score: 11, confidence: 'high', patternMatch: false,
+      preview: 'As agreed on our call this morning, please proceed with the transfer to the account on file for completion tomorrow.',
+      fullText: 'As agreed on our call this morning, please proceed with the transfer to the account on file for completion tomorrow. Let me know once sent.',
+      q1: 'yes', q2: 'yes', action: LOW_ACTION,
+      reasons: [
+        { neg: false, text: 'Account matches one used before in this transaction' },
+        { neg: false, text: 'Amount matches what was expected' },
+        { neg: false, text: 'No urgency or pressure language detected' }
+      ]
+    },
+    {
+      minutesAgo: 125, risk: 'red', label: 'High risk', score: 94, confidence: 'high', patternMatch: true,
+      preview: 'URGENT — our previous account is temporarily unavailable due to a banking issue. Kindly use the replacement account details attached.',
+      fullText: 'URGENT — our previous account is temporarily unavailable due to a banking issue. Kindly use the replacement account details attached and confirm once the payment has been sent.',
+      q1: 'no', q2: 'yes', action: HIGH_ACTION,
+      reasons: [
+        { neg: true, text: 'Bank account has not been used before in this transaction' },
+        { neg: false, text: 'Amount matches what was expected' },
+        { neg: true, text: 'Message uses urgency language' },
+        { neg: true, text: 'Message references a new account' }
+      ]
+    },
+    {
+      minutesAgo: 210, risk: 'amber', label: 'Medium risk', score: 44, confidence: 'medium', patternMatch: false,
+      preview: 'The completion amount has changed slightly since our last update — see attached statement. Let us know if you have any questions.',
+      fullText: 'The completion amount has changed slightly since our last update — see attached statement. Let us know if you have any questions.',
+      q1: 'yes', q2: 'no', action: MEDIUM_ACTION,
+      reasons: [
+        { neg: false, text: 'Account matches one used before in this transaction' },
+        { neg: true, text: 'Amount does not match what was expected' }
+      ]
+    },
+    {
+      minutesAgo: 300, risk: 'green', label: 'Low risk', score: 9, confidence: 'medium', patternMatch: false,
+      preview: 'Reminder: completion is scheduled for Thursday. No action needed from you until then.',
+      fullText: 'Reminder: completion is scheduled for Thursday. No action needed from you until then.',
+      q1: 'yes', q2: 'yes', action: LOW_ACTION,
+      reasons: [
+        { neg: false, text: 'Account matches one used before in this transaction' },
+        { neg: false, text: 'Amount matches what was expected' },
+        { neg: false, text: 'No urgency or pressure language detected' }
+      ]
+    }
+  ];
+
+  CG.getSampleHistory = function () {
+    var now = Date.now();
+    return CG.SAMPLE_HISTORY_SEED.map(function (s, i) {
+      return {
+        id: 'sample-' + i,
+        ts: now - s.minutesAgo * 60000,
+        risk: s.risk, label: s.label, score: s.score,
+        preview: s.preview, fullText: s.fullText,
+        reasons: s.reasons, action: s.action,
+        confidence: s.confidence, patternMatch: s.patternMatch,
+        source: 'sample', demoKey: null, q1: s.q1, q2: s.q2
+      };
+    });
+  };
+
+  /* ------------------------------------------------------------------ *
    * Settings (sessionStorage-backed, read fresh on every use — no cache)
    * ------------------------------------------------------------------ */
 
@@ -234,6 +332,32 @@
   };
 
   CG.capitalize = function (s) { return s.charAt(0).toUpperCase() + s.slice(1); };
+
+  CG.renderHistoryRowDetail = function (e) {
+    var reasonsHtml = e.reasons.map(function (r) {
+      return '<div class="reason ' + (r.neg ? 'neg' : 'pos') + '"><span class="dot"></span><span>' + CG.escapeHtml(r.text) + '</span></div>';
+    }).join('');
+    var patternHtml = e.patternMatch
+      ? '<div class="pattern-banner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 22 20H2z"/><path d="M12 9.5v5"/><circle cx="12" cy="17.2" r="0.9" fill="currentColor" stroke="none"/></svg><span><b>Matches a known payment-diversion fraud pattern.</b></span></div>'
+      : '';
+    return '<div class="detail-grid">' +
+      '<div class="detail-block"><h6>Reasons</h6><div class="reasons">' + reasonsHtml + '</div>' + patternHtml + '</div>' +
+      '<div class="detail-block"><h6>Full message</h6><div class="detail-fulltext">' + CG.escapeHtml(e.fullText) + '</div>' +
+      '<h6 style="margin-top:14px;">Recommended action</h6><p style="font-size:12px;color:var(--text-secondary);line-height:1.6;">' + CG.escapeHtml(e.action) + '</p></div>' +
+      '</div>';
+  };
+
+  CG.renderHistoryRow = function (e, expanded) {
+    var row = '<tr data-id="' + e.id + '" tabindex="0" aria-expanded="' + expanded + '">' +
+      '<td class="col-time" data-label="Time">' + CG.formatTime(e.ts) + '</td>' +
+      '<td data-label="Risk"><span class="badge ' + e.risk + '">' + CG.escapeHtml(e.label) + '</span></td>' +
+      '<td class="col-score" data-label="Score">' + e.score + '/100</td>' +
+      '<td class="col-preview" data-label="Message">' + CG.escapeHtml(e.preview) + '</td>' +
+      '<td class="col-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></td>' +
+      '</tr>';
+    if (expanded) row += '<tr class="detail-row"><td colspan="5">' + CG.renderHistoryRowDetail(e) + '</td></tr>';
+    return row;
+  };
 
   /* ------------------------------------------------------------------ *
    * Nav: re-derives the active tab from body[data-page] at runtime, so
@@ -499,18 +623,7 @@
       nextBtn.disabled = state.page >= totalPages - 1;
 
       tableBody.innerHTML = pageItems.map(function (e) {
-        var expanded = state.expandedId === e.id;
-        var row = '<tr data-id="' + e.id + '" tabindex="0" aria-expanded="' + expanded + '">' +
-          '<td class="col-time" data-label="Time">' + CG.formatTime(e.ts) + '</td>' +
-          '<td data-label="Risk"><span class="badge ' + e.risk + '">' + CG.escapeHtml(e.label) + '</span></td>' +
-          '<td class="col-score" data-label="Score">' + e.score + '/100</td>' +
-          '<td class="col-preview" data-label="Message">' + CG.escapeHtml(e.preview) + '</td>' +
-          '<td class="col-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></td>' +
-          '</tr>';
-        if (expanded) {
-          row += '<tr class="detail-row"><td colspan="5">' + renderDetail(e) + '</td></tr>';
-        }
-        return row;
+        return CG.renderHistoryRow(e, state.expandedId === e.id);
       }).join('');
 
       tableBody.querySelectorAll('tr[data-id]').forEach(function (tr) {
@@ -526,21 +639,31 @@
       });
     }
 
-    function renderDetail(e) {
-      var reasonsHtml = e.reasons.map(function (r) {
-        return '<div class="reason ' + (r.neg ? 'neg' : 'pos') + '"><span class="dot"></span><span>' + CG.escapeHtml(r.text) + '</span></div>';
+    var sampleBody = document.getElementById('sampleHistoryBody');
+    var sampleState = { expandedId: null };
+
+    function renderSample() {
+      if (!sampleBody) return;
+      var items = CG.getSampleHistory();
+      sampleBody.innerHTML = items.map(function (e) {
+        return CG.renderHistoryRow(e, sampleState.expandedId === e.id);
       }).join('');
-      var patternHtml = e.patternMatch
-        ? '<div class="pattern-banner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 22 20H2z"/><path d="M12 9.5v5"/><circle cx="12" cy="17.2" r="0.9" fill="currentColor" stroke="none"/></svg><span><b>Matches a known payment-diversion fraud pattern.</b></span></div>'
-        : '';
-      return '<div class="detail-grid">' +
-        '<div class="detail-block"><h6>Reasons</h6><div class="reasons">' + reasonsHtml + '</div>' + patternHtml + '</div>' +
-        '<div class="detail-block"><h6>Full message</h6><div class="detail-fulltext">' + CG.escapeHtml(e.fullText) + '</div>' +
-        '<h6 style="margin-top:14px;">Recommended action</h6><p style="font-size:12px;color:var(--text-secondary);line-height:1.6;">' + CG.escapeHtml(e.action) + '</p></div>' +
-        '</div>';
+
+      sampleBody.querySelectorAll('tr[data-id]').forEach(function (tr) {
+        function toggle() {
+          var id = tr.getAttribute('data-id');
+          sampleState.expandedId = sampleState.expandedId === id ? null : id;
+          renderSample();
+        }
+        tr.addEventListener('click', toggle);
+        tr.addEventListener('keydown', function (ev) {
+          if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); toggle(); }
+        });
+      });
     }
 
     render();
+    renderSample();
   };
 
   /* ==================================================================== *

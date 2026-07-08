@@ -27,6 +27,7 @@
       <a href="history.html" class="nav-link" data-nav="history"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>History</a>
       <a href="about.html" class="nav-link" data-nav="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="8" r="0.9" fill="currentColor" stroke="none"/></svg>About</a>
       <a href="settings.html" class="nav-link" data-nav="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="14" cy="7" r="2.3"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="17" r="2.3"/></svg>Settings</a>
+      <a href="login/" class="nav-link" data-nav="login"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg>Sign In</a>
     </nav>
     <div class="impact-box">
       <div class="impact-text">
@@ -42,7 +43,19 @@
   </header>
 
   <main>
-    <div class="col-label"><div class="col-num">3</div><div><h3>Check history</h3><p>Every check performed this session — cleared the moment you close the tab</p></div></div>
+    <div class="col-label"><div class="col-num">✦</div><div><h3>Example checks</h3><p>Sample data so this page isn't empty on a first visit — not from your session</p></div></div>
+
+    <div class="panel" style="margin-bottom:24px;">
+      <div class="panel-title"><h2>Examples</h2><span class="meta">Demo data, not stored</span></div>
+      <div class="table-scroll">
+        <table class="history-table">
+          <thead><tr><th>Time</th><th>Risk</th><th>Score</th><th>Message</th><th></th></tr></thead>
+          <tbody id="sampleHistoryBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-label"><div class="col-num">3</div><div><h3>Your check history</h3><p>Every check performed this session — cleared the moment you close the tab</p></div></div>
 
     <div class="panel">
       <div class="panel-title"><h2>History</h2><span class="meta" id="totalMeta">0 checks total</span></div>
@@ -85,6 +98,7 @@
   <a href="history.html" class="nav-link" data-nav="history"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>History</a>
   <a href="about.html" class="nav-link" data-nav="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="8" r="0.9" fill="currentColor" stroke="none"/></svg>About</a>
   <a href="settings.html" class="nav-link" data-nav="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><circle cx="14" cy="7" r="2.3"/><line x1="4" y1="17" x2="20" y2="17"/><circle cx="9" cy="17" r="2.3"/></svg>Settings</a>
+      <a href="login/" class="nav-link" data-nav="login"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg>Sign In</a>
 </nav>
 
 <script src="assets/app.js"></script>
